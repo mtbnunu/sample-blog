@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, Ref, ref } from "vue";
+import { computed, type Ref, ref } from "vue";
 import usePosts from "../composables/usePosts";
 import type Post from "../interfaces/Post";
 
@@ -15,7 +15,10 @@ const openNewPanel = () => {
 const creatingPost: Ref<Partial<Post>> = ref({});
 
 const createPost = async () => {
-  await savePost(creatingPost.value);
+  if (!isValid.value) {
+    return;
+  }
+  await savePost(creatingPost.value as Post);
   emit("exit", { success: true });
 };
 
@@ -26,7 +29,7 @@ const cancel = () => {
 const isValid = computed(
   () =>
     creatingPost.value.title?.trim().length &&
-    creatingPost.value.body?.trim().length
+    creatingPost.value.body?.trim().length,
 );
 </script>
 
@@ -48,7 +51,7 @@ const isValid = computed(
 
 <style scoped>
 .createSection {
-    padding: 20px 0;
-    border-bottom: 2px solid #eee;
+  padding: 20px 0;
+  border-bottom: 2px solid #eee;
 }
 </style>

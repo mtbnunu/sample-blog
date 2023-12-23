@@ -8,13 +8,13 @@ import constants from "@/constants";
   for this simple use case, no library is necessary
 */
 
-export default class RemoteStorageService implements StorageService{
-    async load(options: FetchOptions): Promise<Post[]> {
-      const res = await fetch(constants.endpoint, {
-        "method": "POST",
-        "headers": { "content-type": "application/json" },
-        "body": JSON.stringify({
-          query: `query ($options: PageQueryOptions) {
+export default class RemoteStorageService implements StorageService {
+  async load(options: FetchOptions): Promise<Post[]> {
+    const res = await fetch(constants.endpoint, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        query: `query ($options: PageQueryOptions) {
             posts(options: $options) {
               data {
                 id
@@ -26,39 +26,35 @@ export default class RemoteStorageService implements StorageService{
               }
             }
           }`,
-          variables:{$options:options}
-        }
-        ),
-      });
-      const data = await res.json()
-      return data.data.posts.data;
-    }
+        variables: { $options: options },
+      }),
+    });
+    const data = await res.json();
+    return data.data.posts.data;
+  }
 
+  async save(post: Post): Promise<Post> {
+    const { id, ...input } = post;
 
-    async save(post: Post): Promise<Post> {
-
-      const {id, ...input} = post;
-
-      const res = await fetch(constants.endpoint, {
-        "method": "POST",
-        "headers": { "content-type": "application/json" },
-        "body": JSON.stringify({
-          query: `mutation CreatePost($input: CreatePostInput!) {
+    const res = await fetch(constants.endpoint, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        query: `mutation CreatePost($input: CreatePostInput!) {
             createPost(input: $input) {
               id
               title
               body
             }
         }`,
-        variables:{input}
-        })
-      });
-      const data = await res.json()
-      return data.data.createPost;
-    }
+        variables: { input },
+      }),
+    });
+    const data = await res.json();
+    return data.data.createPost;
+  }
 
-    
-    delete(id: number) {
-      console.error("Not Implented - Out of scope")   
-    }
+  delete(id: number) {
+    console.error("Not Implented - Out of scope");
+  }
 }

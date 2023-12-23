@@ -1,24 +1,24 @@
 body {
-    margin:auto;
-    max-width: 1200px;
+  margin: auto;
+  max-width: 1200px;
 }
-input{
-    width: 100%;
-    box-sizing: border-box;
+input {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .slidedown-enter-active,
 .slidedown-leave-active {
-    transition: max-height 0.5s ease-in-out;
+  transition: max-height 0.5s ease-in-out;
 }
 
 .slidedown-enter-to,
 .slidedown-leave-from {
-    overflow: hidden;
-    max-height: 1000px;
+  overflow: hidden;
+  max-height: 1000px;
 }
 .slidedown-enter-from,
 .slidedown-leave-to {
-    overflow: hidden;
-    max-height: 0;
+  overflow: hidden;
+  max-height: 0;
 }

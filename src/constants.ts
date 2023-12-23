@@ -1,4 +1,4 @@
 export default {
-    endpoint: "https://graphqlzero.almansi.me/api",
-    offlineStorage: "localStorage"
-}
+  endpoint: "https://graphqlzero.almansi.me/api",
+  offlineStorage: "localStorage",
+};

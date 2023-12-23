@@ -1,6 +1,6 @@
-export default interface FetchOptions{
-    paginate: {
-        page: number,
-        limit: number
-    }        
+export default interface FetchOptions {
+  paginate: {
+    page: number;
+    limit: number;
+  };
 }
