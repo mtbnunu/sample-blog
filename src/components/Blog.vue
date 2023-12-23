@@ -33,9 +33,12 @@
             Push {{localPosts.length}} items to Server
         </button>
     </div>
+    <Transition name="slidedown">
+
     <div v-if="createPanelOpen" class="createPanel">
         <CreatePanel @exit="createPanelOpen = false"/>
     </div>
+    </Transition>
     <div>
         <Post v-for="(post) in posts" :key="post.id" :post="post"/>
     </div>

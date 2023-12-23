@@ -2,7 +2,7 @@ import { computed, reactive, ref, type Ref } from "vue";
 import type Post from "@/interfaces/Post";
 import RemoteStorageService from "@/services/RemoteStorageService";
 import OfflineStorageService from "@/services/OfflineStorageService";
-import type FetchOptions from "@/interfaces/FetchOptions";
+
 
 const remotePosts : Ref<Array<Post>> = ref([]);
 const localPosts : Ref<Array<Post>> = ref([]);
